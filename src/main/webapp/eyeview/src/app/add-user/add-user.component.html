@@ -1,0 +1,38 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="name" formControlName="name" placeholder="Name" name="name" class="form-control" id="name">
+    <div *ngIf="addForm.get('name').invalid && (addForm.get('name').dirty || addForm.get('name').touched)"
+        class="alert alert-danger">
+
+      <div *ngIf="addForm.get('name').errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="addForm.get('name').errors.minlength">
+        Name must be at least 3 characters long.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="age" formControlName="age" placeholder="age" name="age" class="form-control" id="age">
+    <div *ngIf="addForm.get('age').invalid && (addForm.get('age').dirty || addForm.get('age').touched)"
+        class="alert alert-danger">
+
+      <div *ngIf="addForm.get('age').errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="addForm.get('age').errors.min">
+        Age must be atleast 1 year.
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group" [hidden]="true">
+      <label for="createdDate">Date:</label>
+      <input  type="createdDate" formControlName="createdDate" placeholder="createdDate" name="createdDate" class="form-control" id="createdDate">
+  </div>
+
+  <button class="btn btn-success" [disabled]="addForm.invalid" >Add</button>
+</form>

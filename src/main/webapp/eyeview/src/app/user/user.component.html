@@ -1,0 +1,40 @@
+<div class="col-md-6" >
+<h2> Eyeview Challenge</h2>
+
+<form [formGroup]="searchForm">
+  
+  <div class="form-group search">
+      <span class="fa fa-search"></span>
+    <input type="text" formControlName="searchText" id="searchText" class="form-control" name="searchText" value="{{ searchText }}" placeholder="search" />
+  </div>
+
+  <div class="form-group">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th [hidden]="true">Id</th>
+        <th>Date</th>
+        <th>Age</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | filter: searchForm.get('searchText').value ">
+        <td [hidden]="true">{{ user.id }}</td>
+        <td>{{ user.createdDate | date }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.name }}</td>
+        <td><button class="btn btn-danger" (click)="editUser(user)"> <span class="fa fa-pencil"></span></button></td>
+        <td><button class="btn btn-danger" (click)="deleteUser(user)"> <span class="fa fa-trash-o"></span></button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</form>
+
+
+<app-add-user></app-add-user>
+</div>
